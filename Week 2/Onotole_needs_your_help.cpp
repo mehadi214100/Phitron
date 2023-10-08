@@ -7,23 +7,20 @@
 #define sp " "
 using namespace std;
 
-
 int main() {
-    string s;cin>>s;
-    int ct = 0;
-    while (s.length()!=1)
-    {
-        int num = 0;
-        for (int i = 0; i < s.length(); i++)
-        {
-            int n = s[i]-'0';
-            num+=n;
-        }
-        ct++;
-        s = to_string(num);
+    int n;cin>>n;
+    map<int,int>m;
+    int arr[n];
+    fl(i,n){
+        cin>>arr[i];
+        m[arr[i]]++;
     }
-    
-    cout<<ct;
+    fl(i,n){
+        if(m[arr[i]]==1){
+            cout<<arr[i];
+            break;
+        }
+    }
     return 0;
 }
 
