@@ -13,40 +13,15 @@ int main() {
     {
         int n;cin>>n;
         string s;cin>>s;
-        vector<string>vc;
-        for (int i = 0; i < n-1; i++)
-        {
-            string ss="";
-            for (int j = 0; j < i; j++)
-            {
-                ss+=s[j];
-            }
-            for (int j = i+2; j < n; j++)
-            {
-                ss+=s[j];
-            }
-            vc.push_back(ss);
-        }
-        int ct = 0;
-        string current = vc[0];
-        sort(vc.begin(),vc.end());
-
-        for (int i = 0; i < vc.size(); i++)
-        {
-            if(vc[i]!=current){
-                ct++;
-                current = vc[i];
-            }
-        }
-        if(ct==0) ct++;
-        cout<<ct;
-
-        cout<<endl;
         
+        int count = n;
+        for (int i = 1; i < n-1; i++)
+        {
+            if(s[i-1]==s[i+1]) count--;
+        }
+        cout<<count-1<<endl;
     }
     
-
-
     return 0;
 }
 
