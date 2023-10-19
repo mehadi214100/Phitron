@@ -13,34 +13,32 @@ int main() {
     {
         int n;cin>>n;
         string arr[n];
+        map<char,int>fast;
+        map<char,int>second;
+        map<string,int>full;
+
+
         for (int i = 0; i < n; i++)
         {
             cin>>arr[i];
+            fast[arr[i][0]]++;
+            second[arr[i][1]]++;
+            full[arr[i]]++;
         }
-        int ct = 0;
-        for (int i = 0; i < n-1; i++)
+        ll ct = 0;
+        for (int i = 0; i < n; i++)
         {
-            string s1 = arr[i];
-          
-            for (int j = i+1; j < n; j++)
-            {
-                string s2 = arr[j];
-                string sss = s1+s2;
+            ll all = full[arr[i]]-1;
+            ll ff = fast[arr[i][0]]-1-all;
+            ll ss = second[arr[i][1]]-1-all;
 
-                if(s1[0]==s2[0] && s1[1]!=s2[1]){
-                   ct++;
-                }else if(s1[0]==s2[1] && s1[1]!=s2[0]){
-                    ct++;
-                }else if(s1[1]==s2[0] && s1[0]!=s2[1]){
-                   ct++;
-                }else if(s1[1]==s2[1] && s1[0]!=s2[0]){
-                    ct++;
-                }
-                
-            }
-            
+            ll c = ff+ss;
+            // cout<<ff<<sp<<ss<<sp<<all<<sp<<c<<endl;
+            fast[arr[i][0]]--;
+            second[arr[i][1]]--;
+            full[arr[i]]--;
+            ct+=c;
         }
-        
         cout<<ct<<endl;
     }
     

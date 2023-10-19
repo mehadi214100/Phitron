@@ -1,49 +1,58 @@
 #include <bits/stdc++.h>
+#define ll long long int
+#define fl(i, n) for (int i = 0; i < n; i++)
+#define sy cout << "YES\n"
+#define sn cout << "NO\n"
+#define se cout << '\n'
+#define sp " "
 using namespace std;
 
 int main() {
-        
-        map<int, int> mp;
-        mp[1] = 1;
-        mp[2] = 2;
-        mp[3] = 2;
-        mp[4] = 1;
-
-        int cnt = 3;
-        while(mp.size() && cnt--) {
-                for(auto &m : mp) {
-                    cout << m.first << endl;
-                    mp.erase(1);
-                
-                // if(prevKey != -1) {
-                //     // cout << prevKey << sp << m.first<< endl;
-                //     if(m.first == prevKey + 1) {
-                //         mp[m.first]--;
-                //     } else {
-                //         cnt++;
-                //         break;
-                //     }
-
-                // } else {
-                //     mp[m.first]--;
-                // }
-
-                // prevKey = m.first;
-                // if(mp[m.first] == 0) {
-                //     mp.erase(m.first);
-                // }
-                // for(auto &m : mp) {
-                //     cout << m.first << " " << m.second << endl;
-                // }
-                // cout << endl;
-                // cout << prevKey << endl;
-            }   
-
+    int t;cin>>t;
+    while (t--)
+    {
+        int n;cin>>n;
+        map<int,int>mp;
+        for (int i = 0; i < n; i++)
+        {
+            int x;cin>>x;
+            mp[x]++;
         }
-        // cout << cnt << endl;
-        
+        int prev = 0;
+        int ct = 0;
+        int prevalue  = 0;
 
-    
+        int i = 0;
+        int j = 0;
+        for(auto v:mp){
+            if(i==0){
+                prev = v.first;
+                prevalue = v.second;
+                ct += v.second;
+                i++;
+            }else{
+                int curr = v.first;
+                if(curr==prev+1){
+                    int currValue = v.second;
+                    if(currValue>prevalue){
+                        int diff = currValue-prevalue;
+                        ct += diff;
+                    }
+                    prevalue = currValue;
+                    prev = curr;
+                }else{
+                    ct += v.second;
+                    prevalue = v.second;
+                    prev = curr;
+                }
+
+            }
+        }
+        cout<<ct<<endl;
+        
+    }
+
+
     return 0;
 }
 

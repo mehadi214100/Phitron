@@ -8,25 +8,23 @@
 using namespace std;
 
 int main() {
-    int t;cin>>t;
-    while (t--)
-    {
-       int l,r,x;cin>>l>>r>>x;
-       int a,b;cin>>a>>b;
+     int t;
+     cin>>t;
+     while (t--)
+     {
+          int l,r,x; cin>>l>>r>>x;
+          int a,b; cin>>a>>b;
+          int A = min(a,b);
+          int B = max(a,b);
 
-       if(a==b){
-            cout<<0<<endl;
-       }else if(abs(b-a)>=x){
-            cout<<1<<endl;
-       }else if(abs(a-x)>=abs(b-x)){
-            cout<<2<<endl;
-       }else{
-            cout<<-1<<endl;
-       }
-
-    }
-    
-    return 0;
+          if(A==B) cout<<0<<endl;
+          else if((A+x)<=B) cout<<1<<endl;
+          else if(B+x<=r || (A-x>=l)) cout<<2<<endl;
+          else if(B+x>r && B-x<l || A+x>r && A-x<l)  cout<<-1<<endl;
+          else cout<<3<<endl;       
+     }
+     
+     return 0;
 }
 
 
