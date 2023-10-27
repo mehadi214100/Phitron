@@ -1,40 +1,29 @@
-#include <iostream>
-#include <vector>
-#include <algorithm>
-
+#include <bits/stdc++.h>
+#define ll long long int
+#define fl(i, n) for (int i = 0; i < n; i++)
+#define sy cout << "YES\n"
+#define sn cout << "NO\n"
+#define se cout << '\n'
+#define sp " "
 using namespace std;
 
 int main() {
-    int t;
-    cin >> t; 
-
-    while (t--) {
-        int n, k;
-        cin >> n >> k; 
-        vector<int> a(n);
-        for (int i = 0; i < n; i++) {
-            cin >> a[i];
+    int t;cin>>t;
+    while (t--)
+    {
+        int n,k;cin>>n>>k;
+        int arr[n];
+        int mn = INT_MAX;
+        for (int i = 0; i < n; i++)
+        {
+            cin>>arr[i];
+            mn = min(arr[i]%k,i);
         }
-        long long product = 1;
-        for (int ai : a) {
-            product *= ai;
-        }
-        int operations = 0;
-        long long remainder = product % k;
-
-        if (remainder == 0) {
-            cout << "0" << endl;
-        } else {
-            while (remainder != 0) {
-                sort(a.begin(),a.end());
-                int mn = a[0];
-                remainder = (remainder * mn) % k;
-                operations++;
-                a[0]++;
-            }
-            cout << operations << endl;
-        }
+        cout<<mn<<endl;
+        
     }
-
+    
     return 0;
 }
+
+
