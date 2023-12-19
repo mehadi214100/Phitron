@@ -12,37 +12,22 @@ int main() {
     cin>>t;
     while (t--)
     {
-        string s;
-        cin>>s;
-        int size = s.length();
-        int onezero = 0;
-        int zero = 0;
-        int one = 0;
-        for (int i = 0; i < size; i++)
-        {
+         string s;cin>>s;
+         int zero=0,one=0;
+         for(int i=0;i<s.length();i++){
             if(s[i]=='0')zero++;
             else one++;
-        }
-        int ans= 0;
-        for (int i = 0; i < size; i++)
-        {
-            if(s[i]=='0' && one<1) break;
-            if(s[i]=='1' && zero<1) break;
-            
-            if(s[i]=='0' && one>0){
-                ans++;
-                one--;
-            }else if(s[i]=='1' && zero>0){
-                ans ++;
-                zero--;
+        } 
+        for(int i=0;i<s.length();i++){
+            if(s[i]=='0'){
+                if(one>0) one--;
+                else break;
+            }else{
+                if(zero>0) zero--;
+                else break;
             }
         }
-        cout<<abs(size-ans)<<endl;
-
-
-        
-        
-        
+        cout<<zero+one<<endl;
     }
     
     return 0;
