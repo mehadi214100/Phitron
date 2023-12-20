@@ -7,47 +7,49 @@
 #define sp " "
 using namespace std;
 
-int counter(int arr[],int n,int mid){
-    int ct = 1;
-    int current = arr[0]+mid;
+ll isvalid(ll arr[],ll n,ll mid,ll m){
+    ll sum = 0;
     for (int i = 0; i < n; i++)
     {
-        if(abs(current-arr[i])>mid){
-            ct++;
-            current = arr[i]+mid;
+        if(arr[i]>mid){
+            sum += arr[i]-mid;
         }
     }
-    return ct;
+    return sum;
     
 }
 
 int main() {
     int t = 1;
-    cin>>t;
+    // cin>>t;
     while (t--)
     {
-        int n;cin>>n;
-        int arr[n];
+        ll n;
+        ll m;
+        cin>>n>>m;
+        ll arr[n];
         for (int i = 0; i < n; i++)
         {
             cin>>arr[i];
         }
-        sort(arr,arr+n);
-        int l=0,r=INT_MAX,ans;
+
+        ll l = 0,r=LONG_LONG_MAX;
+        ll ans;
         while (l<=r)
         {
-            int mid = l+(r-l)/2;
-            int number = counter(arr,n,mid);
-            if(number<=3){
-                r = mid-1;
+            ll mid = l+(r-l)/2;
+            ll sum = isvalid(arr,n,mid,m);
+            if(sum>=m){
                 ans = mid;
-            }else{
                 l = mid+1;
+            }else{
+                r = mid-1;
             }
         }
-        cout<<ans<<endl;
+        cout<<ans;
+
         
-          
+        
     }
     
     return 0;

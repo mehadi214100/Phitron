@@ -7,18 +7,15 @@
 #define sp " "
 using namespace std;
 
-int counter(int arr[],int n,int mid){
-    int ct = 1;
-    int current = arr[0]+mid;
+ll res(ll arr[],ll n,ll h){
+    ll w = 0;
     for (int i = 0; i < n; i++)
     {
-        if(abs(current-arr[i])>mid){
-            ct++;
-            current = arr[i]+mid;
+        if(h>arr[i]){
+            w += h-arr[i];
         }
     }
-    return ct;
-    
+    return w;
 }
 
 int main() {
@@ -26,28 +23,29 @@ int main() {
     cin>>t;
     while (t--)
     {
-        int n;cin>>n;
-        int arr[n];
+        ll n,x;
+        cin>>n>>x;
+        ll arr[n];
         for (int i = 0; i < n; i++)
         {
             cin>>arr[i];
         }
-        sort(arr,arr+n);
-        int l=0,r=INT_MAX,ans;
+        ll l = 1,r=INT_MAX,ans;
         while (l<=r)
         {
-            int mid = l+(r-l)/2;
-            int number = counter(arr,n,mid);
-            if(number<=3){
-                r = mid-1;
-                ans = mid;
+            ll height = l+(r-l)/2;
+            ll water = res(arr,n,height);
+            
+            if(water<=x){
+                ans = height;
+                l = height+1; 
             }else{
-                l = mid+1;
+                r = height-1;
             }
         }
         cout<<ans<<endl;
         
-          
+         
     }
     
     return 0;
