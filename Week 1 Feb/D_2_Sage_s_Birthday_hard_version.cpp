@@ -19,13 +19,16 @@ int main() {
             cin>>arr[i];
         }
         sort(arr,arr+n);
-        int ans[n+1];
-        int i=0,j=1,k=0;
-        if(n%2==1)ans[n-1] = arr[n-1];
-        for (int i = 0; j<n; i+=2,j+=2)
-        {
-            ans[k] = arr[j];
-            ans[k+1] = arr[i];
+        int ans[n+1]={0};
+        int i=0;
+        int k = 1;
+        for(int i=0;i<n/2;i++){
+            ans[k] = arr[i];
+            k+=2;
+        }
+        k = 0;
+        for(int i=n/2;i<n;i++){
+            ans[k] = arr[i];
             k+=2;
         }
         int ct=0;
